@@ -13,7 +13,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createLink(url: String!, slug: String!): Link!
+    createLink(url: String!, slug: String): Link!
   }
 `;
 

@@ -1,3 +1,5 @@
+const { generateSlug } = require("../lib/slug");
+
 const resolvers = {
   Query: {
     async link(root, { id }, { models }) {
@@ -9,10 +11,18 @@ const resolvers = {
   },
   Mutation: {
     async createLink(root, { url, slug }, { models }) {
-      return models.Link.create({
-        url,
-        slug
-      });
+      if (!slug) {
+        const randomSlug = generateSlug;
+        return models.Link.create({
+          url,
+          slug: randomSlug
+        });
+      } else {
+        return models.Link.create({
+          url,
+          slug
+        });
+      }
     }
   }
 };
